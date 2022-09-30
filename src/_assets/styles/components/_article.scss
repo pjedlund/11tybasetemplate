@@ -1,0 +1,51 @@
+.article {
+  // &__header {
+  //     //@extend .page__header;
+  // }
+  // &__title {
+  //     //@extend .page__title;
+  //     // @include mq(lg) {
+  //     //     font-size: 6rem !important;
+  //     // }
+  // }
+  &__meta {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      font-size: 1rem;
+      margin: 1rem 0;
+      //color: var(--color-text-offset);
+
+  //     @include mq(md) {
+  //         justify-content: center;
+  //         font-size: 1.25rem;
+  //     }
+  }
+  &__tags {
+      font-family: Georgia, Times, serif;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+  }
+  &__status {
+      font-weight: 700;
+      //color: var(--color-secondary);
+  }
+  // &__content {
+  //     @include container-narrow;
+  // }
+  &__footer {
+      //@include container-narrow;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      margin: 2rem auto;
+
+      &__info {
+          margin: 1rem 0;
+          //color: var(--color-text-offset);
+          font-style: italic;
+      }
+  }
+}

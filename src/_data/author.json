@@ -1,0 +1,17 @@
+{
+	"name": "Johan Edlund",
+	"url": "https://www.johanedlund.se",
+	"email": "me@johanedlund.se",
+	"phone": "+46706022495",
+	"avatar": "",
+	"social": {
+		"twitter": {
+			"name": "pjedlund",
+			"url": "https://twitter.com/pjedlund"
+		},
+		"github": {
+			"name": "pjedlund",
+			"url": "https://github.com/pjedlund"
+		}
+	}
+}

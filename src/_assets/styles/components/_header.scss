@@ -1,0 +1,10 @@
+.header {
+    padding: $spacingY 0;
+    // background-color: $grayLightest;
+
+    &__inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+}

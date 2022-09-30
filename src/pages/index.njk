@@ -1,0 +1,43 @@
+---
+layout: base
+permalink: /
+title: "Hello World!"
+---
+
+<div class="hero container">
+
+	<div class="hero__inner">
+	<h1 class="hero__title">{{ title }}</h1>
+		<div class="hero__content">
+		<p class="u-align-center">11ty basetemplate.<p>
+		<h2>All posts:</h2>
+		<ul>
+		{%- for post in collections.all -%}
+			<li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+		{%- endfor -%}
+		</ul>
+		<p>{{ absolutePageUrl }}</p>
+		</div>
+	</div>
+
+	{% if collections.featured.length %}
+	<h2>Featured:</h2>
+	<ul>
+	{%- for feature in collections.featured -%}
+		<li><a href="{{ feature.url }}">{{ feature.data.title }}</a></li>
+	{%- endfor -%}
+	</ul>
+	{% endif %}
+
+	{% if collections.notes.length %}
+	<h2>Notes:</h2>
+	<ul>
+	{%- for note in collections.notes -%}
+		<li><a href="{{ note.url }}">{{ note.data.title }}</a></li>
+	{%- endfor -%}
+	</ul>
+	{% endif %}
+
+</div>
+
+

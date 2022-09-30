@@ -1,0 +1,18 @@
+---
+layout: base
+permalink: /notes/
+title: Notes
+---
+
+<div class="container page">
+		<header class="page__header">
+				<h1 class="page__title">{{ title }}</h1>
+		</header>
+		<div class="page__content">
+			<ul>
+			{%- for note in collections.notes -%}
+				<li><a href="{{ note.url }}">{{ note.data.title }}</a></li>
+			{%- endfor -%}
+			</ul>
+		</div>
+</div>

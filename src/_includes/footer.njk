@@ -1,0 +1,32 @@
+<footer class="footer h-card" role="contentinfo">
+	<div class="footer__inner container">
+		<p class="footer__item">
+			<strong><a href="{{ meta.repo }}/tree/master/UNLICENSE">Unlicense</a> {{ build.timestamp | dateToFormat('yyyy') }}</strong><br>
+			<a class="p-name u-url" href="{{ author.url }}">{{ author.name }}</a>
+		</p>
+
+		<p class="footer__item">
+			<strong>Social</strong><br>
+			<a href="{{ author.social.twitter.url }}" title="Twitter">Twitter</a> /
+			<a href="{{ author.social.github.url }}" title="Github">Github</a>
+		</p>
+
+		<p class="footer__item">
+			<strong>Legal</strong><br>
+			<a href="/privacy/">Privacy Policy</a>
+		</p>
+
+		<p class="footer__item">
+			<strong>Links</strong><br>
+			<a href="/blogroll/">Blogroll</a>
+		</p>
+
+		<p class="footer__item">
+			<strong>Footer right</strong><br>
+			<a href="{{ meta.repo }}/tree/master/{{ page.inputPath }}" class="footer__icon" title="Edit this page on Github">
+					<span>Edit this page on Github</span>
+			</a>
+		</p>
+
+	</div>
+</footer>

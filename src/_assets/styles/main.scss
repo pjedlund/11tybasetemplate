@@ -1,0 +1,127 @@
+// ---------------------------------
+// MASTER STYLESHEET INDEX
+// ---------------------------------
+
+//--------------------
+// VARIABLES & CONFIG
+//--------------------
+
+/*----- COLORS -----*/
+$very-light-gray: #b7c5d3;
+$light-gray: #718ca1;
+$gray: #41505e;
+$dark-gray: #333f4a;
+$very-dark-gray: #1d252c;
+$color3medium: #d95468;
+
+// Foreground
+$header-color: #2dc659; //telavox green
+$header-h1-color: $header-color;
+
+// Background
+$bg-color: #181e30; //darkened telavox blue
+$bg-color-footer: darken(#95e2ac, 60%);
+
+// Grayscale.
+$grayDarkest: #373a3c;
+$grayDark: #55595c;
+$gray: #818a91;
+$grayLight: #eceeef;
+$grayLightest: #f7f7f9;
+
+// Brand Colors
+$brand-red: #fc6767;
+$brand-color-primary: $brand-red;
+$brand-color-primary-offset: darken($brand-red, 6%);
+
+/*----- LAYOUT -----*/
+$spacingX: 2rem;
+$spacingY: 2rem;
+$breakpoints: (
+	md: 670px,
+	lg: 940px,
+	xl: 1260px
+);
+$container-max-width: 1200px;
+$container-narrow-max-width: 800px;
+$pane-bg-color: #123456;
+
+// Z-Index Stack
+$zLayers: (
+	'modal': 999,
+	'nav': 100,
+	'content-overlay': 30
+);
+
+// Shapes and shadows
+$boxShadowElevated: 0 6px 12px 0 rgba(0, 0, 0, 0.1);
+$borderRadius: 0.25rem;
+
+/*--- TYPOGRAPHY ---*/
+/*
+ * All system fonts for quick loading
+ * https://systemfontstack.com
+ */
+$font-family-sans: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+	'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+	sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+// https://similarfont.io/1-google-font-similar-to-georgia Tinos
+$font-family-serif: 'Iowan Old Style', 'Apple Garamond', Baskerville,
+	'Times New Roman', 'Droid Serif', Times, 'Source Serif Pro', serif,
+	'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+$fontFamilyMonospace: 'Dank Mono', 'Fira Code', 'Victor Mono Regular',
+	Inconsolata, 'Fira Mono', 'Source Code Pro', 'Anonymous Pro', 'Ubuntu Mono',
+	'Bitstream Vera Sans Mono', Menlo, Monaco, 'Andale Mono', 'Courier New',
+	monospace;
+
+$font-family-base: $font-family-sans;
+$font-family-header: $font-family-serif;
+$font-color: $very-light-gray;
+$font-size-root: 100%; /*16px*/
+$font-size-base: 1rem;
+$line-height: 1.618;
+
+/*---- LINKS ----*/
+$link-color: $color3medium;
+$link-color-visited: lighten($link-color, 20%);
+$link-color-hover: darken($link-color, 20%);
+$link-color-active: darken($link-color, 10%);
+
+/*---- ANIMATION ----*/
+// Easing
+$animation-curve-fast-out-slow-in: cubic-bezier(0.4, 0, 0.2, 1);
+$animation-curve-linear-out-slow-in: cubic-bezier(0, 0, 0.2, 1);
+$animation-curve-fast-out-linear-in: cubic-bezier(0.4, 0, 1, 1);
+$animation-curve-default: $animation-curve-fast-out-slow-in;
+
+//--------------------
+// UTILITIES
+//--------------------
+
+@import 'utils/functions';
+@import 'utils/mixins';
+
+//--------------------
+// BASE MODULES
+// partials with global scope
+//--------------------
+
+@import 'base/fonts';
+@import 'base/normalize';
+@import 'base/reboot';
+@import 'base/layout';
+@import 'base/typography';
+@import 'base/focus';
+@import 'base/utilities';
+@import 'base/screenreader';
+@import 'base/animation';
+
+//--------------------
+// COMPONENTS
+// partials with local scope to a component
+//--------------------
+
+@import 'components/header';
+@import 'components/nav';
+@import 'components/footer';
+@import 'components/icon';

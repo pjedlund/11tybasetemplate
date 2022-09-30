@@ -1,0 +1,36 @@
+---
+layout: base.njk
+---
+
+<article id="{{ title | slug }}" class="article container h-entry" itemscope itemtype="http://schema.org/BlogPosting" aria-labelledby="{{ title | slug }}-title">
+		<header class="article__header">
+
+				<h1 id="{{ title | slug }}-title" class="article__title p-name title" itemprop="headline">{{ title }}</h1>
+
+				<div class="article__meta">
+						<p>
+								<time class="article__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">{{ page.date | readableDate('dd LLL yyyy') }}</time>
+								{% if tags %}
+								<span>&sdot;</span> <span class="article__tags p-category">{{ tags | join(', ') }}</span>
+								{% endif %}
+						</p>
+				</div>
+
+		</header>
+
+		<div class="article__content e-content markdown" itemprop="articleBody">
+				{{ content | safe }}
+		</div>
+
+
+		<div class="article__footer">
+				<div hidden>
+						<a class="u-url" href="{{ page.url | url | absoluteUrl(site.url) }}">{{ title }}</a>
+						<p class="h-card p-author">
+								<a class="p-name u-url" rel="author" href="{{ author.url }}">{{ author.name }}</a>
+								{# <img class="u-photo" src="{{ author.avatar | url | absoluteUrl(author.url) }}" /> #}
+						</p>
+				</div>
+		</div>
+
+</article>

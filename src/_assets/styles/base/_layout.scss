@@ -1,0 +1,51 @@
+// Main Site Layout
+
+.layout {
+	display: flex;
+	flex-direction: column;
+	min-height: 100%;
+	min-height: 100vh;
+	position: relative;
+	background-image: linear-gradient(
+		to bottom,
+		$bg-color,
+		darken($bg-color, 5%)
+	);
+
+	.header,
+	.footer {
+		flex: none;
+	}
+	.footer {
+		min-height: 300px;
+		//background-image: url(/_assets/images/stacked-waves-haikei-2.svg);
+		background: $bg-color-footer;
+	}
+
+	.main {
+		display: flex;
+		flex-direction: column;
+		flex: 1 0 auto;
+
+		&::after {
+			content: '';
+			display: block;
+			height: 0px;
+			visibility: hidden;
+		}
+	}
+}
+
+.container {
+	//width: 90%; // 231/2560*100 = 9,0234375
+	//margin-left: 9.0234375vw;
+	// margin-right: 9.0234375vw;
+	width: 90%;
+	margin-left: auto;
+	margin-right: auto;
+	max-width: $container-max-width;
+
+	&--narrow {
+		max-width: $container-narrow-max-width;
+	}
+}

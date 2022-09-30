@@ -1,0 +1,36 @@
+.nav {
+    &__menu {
+        display: none;
+        position: absolute;
+        left: 0;
+        right: 0;
+        background-color: #fff;
+    }
+    &__link {
+        display: block;
+        padding: 0.5em 1em;
+        font-size: 0.875rem;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+    }
+    &__toggle {
+        @include button-reset;
+    }
+
+    @include mq-down(lg) {
+        &.is-open &__menu {
+            display: block;
+        }
+    }
+
+    @include mq(lg) {
+        &__toggle {
+            display: none;
+        }
+        &__menu {
+            display: flex;
+            position: static;
+            background-color: transparent;
+        }
+    }
+}

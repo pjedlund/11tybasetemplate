@@ -1,0 +1,59 @@
+.markdown {
+  //@include body-text();
+
+
+  /* Images */
+  img,
+  video {
+      display: block;
+      max-width: 100%;
+      height: auto;
+      margin: 0 auto 2rem;
+      //color: var(--color-text-offset);
+      font-style: italic;
+      text-align: center;
+  }
+
+  figure {
+      max-width: none;
+      margin: 2rem auto;
+      text-align: center;
+
+      img {
+          margin-bottom: 0;
+      }
+  }
+
+  figcaption {
+      padding-top: 0.75rem;
+      font-style: italic;
+      font-size: 1rem;
+  }
+
+  /* Video */
+  video {
+      max-width: 100%;
+      height: auto;
+  }
+
+    /* Extends */
+    .extend {
+        @include mq(lg) {
+            margin-left: -3rem;
+            margin-right: -3rem;
+        }
+    }
+
+    .table-of-contents {
+        ol { 
+            counter-reset: list-item; 
+        }
+        li { 
+            display: block; counter-increment: list-item; 
+        }
+        li:before { 
+            content: counters(list-item,'.') ' '; 
+        }
+    }
+
+}

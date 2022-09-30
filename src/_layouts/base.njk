@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="{{ lang or meta.lang }}">
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>{{ title or meta.title }}</title>
+	{# <meta name="robots" content="noindex" /> #}
+	{% include "meta.njk" %}
+	{# {% include "css-inlined.njk" %} #}
+	<link rel="stylesheet" href="{{ '/_assets/styles/main.css' | url }}">
+</head>
+<body>
+	<a href="#main" class="sr-skip-link">skip to main content</a>
+	<div class="layout" role="document">
+  	{% include "header.njk" %}
+  	<main id="main" class="main" tabindex="-1">
+      	{{ content | safe }}
+  	</main>
+	{% include "footer.njk" %}
+	</div>
+<script src="{{ '/_assets/scripts/main.js' | url }}"></script>
+<script>if ('serviceWorker' in navigator){navigator.serviceWorker.register('/serviceworker.js')}</script>
+</body>
+</html>
