@@ -1,10 +1,17 @@
 .header {
-    padding: $spacingY 0;
-    // background-color: $grayLightest;
+	padding: $spacingY 0;
+	// background-color: $grayLightest;
 
-    &__inner {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-    }
+	&__inner {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+	}
+	&__brand {
+		display: block;
+		padding: 0.5em 1em;
+		font-size: 0.875rem;
+		text-transform: uppercase;
+		letter-spacing: 3px;
+	}
 }

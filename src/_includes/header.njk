@@ -1,10 +1,11 @@
 <header class="header">
   <div class="header__inner container">
-      <div class="header__left">
-      	<a class="logo" href="/"><img src="/_assets/images/11ty-logo-bg.svg" alt="11ty logo"></a>
-      </div>
-			<div class="header__right">
-					{% include "navigation.njk" %}
-			</div>
+		<a class="header__brand" href="/" rel="home" aria-label="Go To Homepage">
+			<img src="/_assets/images/11ty-logo-bg.svg" alt="11ty logo" height="38" width="38">
+			<span class="header__brand__text">{{ meta.title }}</span>
+		</a>
+		<div class="header__right">
+			{% include "navigation.njk" %}
+		</div>
   </div>
 </header>
