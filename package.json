@@ -12,6 +12,7 @@
 	"main": "main.js",
 	"scripts": {
 		"clean": "del-cli _site",
+		"debug": "DEBUG=Eleventy* eleventy",
 		"eleventy:dev": "cross-env ELEVENTY_ENV=development eleventy --serve",
 		"eleventy:prod": "cross-env ELEVENTY_ENV=production eleventy",
 		"dev": "run-s clean eleventy:dev --print-label",

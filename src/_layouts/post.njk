@@ -8,17 +8,24 @@ layout: base.njk
         <h1 id="{{ title | slug }}-title" class="article__title p-name title" itemprop="headline">{{ title }}</h1>
 
         <div class="article__meta">
-            <p>
-                <time class="article__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">{{ page.date | readableDate('dd LLL yyyy') }}</time>
-                {% if tags %}
-                <span>&sdot;</span> <span class="article__tags p-category">{{ tags | join(', ') }}</span>
-                {% endif %}
-            </p>
+            <p class="u-align-center">
+            	<time class="article__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">Published: {{ page.date | readableDate('yyyy-LL-dd') }}</time>
+							<span> | </span>
+							<time class="article__updated dt-updated" datetime="{{ last_updated | dateToISO }}">Updated: {{ last_updated | readableDate('yyyy-LL-dd')}}</time>
+						</p>
+						{% if tags %}
+						<ul>
+							{% for tag in tags %}
+							<li><a href="/posts/tag/{{ tag | slugify }}">{{ tag }}</a></li>
+							{% endfor %}
+						</ul>
+						{% endif %}
         </div>
 
     </header>
 
     <div class="article__content e-content markdown" itemprop="articleBody">
+				{{ date }}
         {{ content | safe }}
     </div>
 
