@@ -10,71 +10,74 @@ const transforms = require('./utils/transforms.js')
 const IS_PRODUCTION = process.env.ELEVENTY_ENV === 'production'
 
 const CONTENT_GLOBS = {
-	posts: 'src/posts/*/*.md',
-	notes: 'src/notes/*.md',
-	media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm'
+  posts: 'src/posts/*/*.md',
+  notes: 'src/notes/*.md',
+  media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm'
 }
 
 module.exports = function (eleventyConfig) {
-	// Collection: posts
-	eleventyConfig.addCollection('posts', function (collection) {
-		return collection.getFilteredByGlob(CONTENT_GLOBS.posts)
-	})
-	// Collection: notes
-	eleventyConfig.addCollection('notes', function (collection) {
-		return collection.getFilteredByGlob(CONTENT_GLOBS.notes)
-	})
-	// Collection: featured
-	eleventyConfig.addCollection('featured', function (collection) {
-		return collection.getFilteredByTags('featured')
-	})
+  //set deep data merge to...
+  //eleventyConfig.setDataDeepMerge(false)
 
-	// Plugins
-	eleventyConfig.addPlugin(pluginRss)
-	eleventyConfig.addPlugin(pluginNavigation)
+  // Collection: allposts
+  eleventyConfig.addCollection('allposts', function (collection) {
+    return collection.getFilteredByGlob(CONTENT_GLOBS.posts)
+  })
+  // Collection: notes
+  eleventyConfig.addCollection('allnotes', function (collection) {
+    return collection.getFilteredByGlob(CONTENT_GLOBS.notes)
+  })
+  // Collection: featured
+  eleventyConfig.addCollection('allfeatured', function (collection) {
+    return collection.getFilteredByTags('featured')
+  })
 
-	// Shortcodes
-	Object.keys(shortcodes).forEach((shortcodeName) => {
-		eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
-	})
+  // Plugins
+  eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(pluginNavigation)
 
-	// Filters
-	Object.keys(filters).forEach((filterName) => {
-		eleventyConfig.addFilter(filterName, filters[filterName])
-	})
+  // Shortcodes
+  Object.keys(shortcodes).forEach((shortcodeName) => {
+    eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
+  })
 
-	// Transforms
-	Object.keys(transforms).forEach((transformName) => {
-		eleventyConfig.addTransform(transformName, transforms[transformName])
-	})
+  // Filters
+  Object.keys(filters).forEach((filterName) => {
+    eleventyConfig.addFilter(filterName, filters[filterName])
+  })
 
-	// Asset Watch Targets
-	eleventyConfig.addWatchTarget('src/_assets')
+  // Transforms
+  Object.keys(transforms).forEach((transformName) => {
+    eleventyConfig.addTransform(transformName, transforms[transformName])
+  })
 
-	// Pass-through files
-	eleventyConfig.addPassthroughCopy('src/robots.txt')
-	eleventyConfig.addPassthroughCopy('src/humans.txt')
-	eleventyConfig.addPassthroughCopy('src/site.webmanifest')
-	eleventyConfig.addPassthroughCopy('src/_assets/fonts')
-	eleventyConfig.addPassthroughCopy('src/_assets/images')
+  // Asset Watch Targets
+  eleventyConfig.addWatchTarget('src/_assets')
 
-	// Pass-through for post-images
-	eleventyConfig.addPassthroughCopy(
-		'src/posts/*/*.{jpg,jpeg,png,gif,mp4,webp,webm,avif}'
-	)
+  // Pass-through files
+  eleventyConfig.addPassthroughCopy('src/robots.txt')
+  eleventyConfig.addPassthroughCopy('src/humans.txt')
+  eleventyConfig.addPassthroughCopy('src/site.webmanifest')
+  eleventyConfig.addPassthroughCopy('src/_assets/fonts')
+  eleventyConfig.addPassthroughCopy('src/_assets/images')
 
-	return {
-		passthroughFileCopy: true,
+  // Pass-through for post-images
+  eleventyConfig.addPassthroughCopy(
+    'src/posts/*/*.{jpg,jpeg,png,gif,mp4,webp,webm,avif}'
+  )
 
-		dir: {
-			input: 'src',
-			output: '_site',
-			includes: '_includes',
-			layouts: '_layouts',
-			data: '_data'
-		},
-		templateFormats: ['njk', 'md', '11ty.js'],
-		htmlTemplateEngine: 'njk',
-		markdownTemplateEngine: 'njk'
-	}
+  return {
+    passthroughFileCopy: true,
+
+    dir: {
+      input: 'src',
+      output: '_site',
+      includes: '_includes',
+      layouts: '_layouts',
+      data: '_data'
+    },
+    templateFormats: ['njk', 'md', '11ty.js'],
+    htmlTemplateEngine: 'njk',
+    markdownTemplateEngine: 'njk'
+  }
 }
