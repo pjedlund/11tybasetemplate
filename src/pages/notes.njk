@@ -2,6 +2,8 @@
 layout: base
 permalink: /notes/
 title: Notes
+eleventyNavigation:
+  key: Notes
 ---
 
 <div class="container page">
@@ -10,7 +12,7 @@ title: Notes
 		</header>
 		<div class="page__content">
 			<ul>
-			{%- for note in collections.notes -%}
+			{%- for note in collections.allnotes -%}
 				<li><a href="{{ note.url }}">{{ note.data.title }}</a></li>
 			{%- endfor -%}
 			</ul>
