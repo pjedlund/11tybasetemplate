@@ -1,7 +1,13 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
+const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
 const { minify } = require('terser')
+
 const markdownIt = require('markdown-it')
+const markdownItAttrs = require('markdown-it-attrs')
+const markdownItFootnote = require('markdown-it-footnote')
+const markdownItAnchor = require('markdown-it-anchor')
+const markdownItToCDoneRight = require('markdown-it-toc-done-right')
 
 const shortcodes = require('./utils/shortcodes.js')
 const filters = require('./utils/filters.js')
@@ -35,7 +41,8 @@ module.exports = function (eleventyConfig) {
   // Plugins
   eleventyConfig.addPlugin(pluginRss)
   eleventyConfig.addPlugin(pluginNavigation)
-
+  eleventyConfig.addPlugin(pluginSyntaxHighlight)
+  
   // Shortcodes
   Object.keys(shortcodes).forEach((shortcodeName) => {
     eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
@@ -50,6 +57,30 @@ module.exports = function (eleventyConfig) {
   Object.keys(transforms).forEach((transformName) => {
     eleventyConfig.addTransform(transformName, transforms[transformName])
   })
+
+
+  // Markdown
+  let markdownItOptions = {
+    html: true,
+    breaks: true,
+    linkify: true,
+    typographer: true
+  }
+  let markdownLib = markdownIt(markdownItOptions)
+    .use(markdownItAttrs)
+    .use(markdownItFootnote)
+    .use(markdownItAnchor, {
+      permalink: markdownItAnchor.permalink.headerLink({
+        safariReaderFix: true
+      })
+    })
+    .use(markdownItToCDoneRight)
+  //TODO:!! add [num] infront of footnotes
+  markdownLib.renderer.rules.footnote_block_open = () =>
+    '<section class="footnotes">\n' +
+    '<h4 class="mt-3">Footnotes</h4>\n' +
+    '<ol class="footnotes-list">\n'
+  eleventyConfig.setLibrary('md', markdownLib)
 
   // Asset Watch Targets
   eleventyConfig.addWatchTarget('src/_assets')

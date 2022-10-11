@@ -92,3 +92,13 @@
     margin-left: auto;
     margin-right: auto;
 }
+
+
+@mixin body-text() {
+    font-size: 1.125rem;
+    line-height: 1.65;
+
+    @include mq(md) {
+        font-size: 1.375rem;
+    }
+}
