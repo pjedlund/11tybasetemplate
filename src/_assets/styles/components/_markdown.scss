@@ -33,6 +33,10 @@
     display: block;
     max-width: 100%;
     height: auto;
+    // maybe...? 2022-10-13
+    // https://www.smashingmagazine.com/2020/03/setting-height-width-images-important-again/
+    aspect-ratio: 16/9;
+
     margin: 0 auto 2rem;
     color: var(--color-text-offset);
     font-style: italic;
