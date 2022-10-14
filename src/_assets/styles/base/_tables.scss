@@ -1,0 +1,41 @@
+table {
+  font-size: 1rem;
+  width: 100%;
+  border-collapse: collapse;
+  font-family: $font-family-monospace;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid #555;
+}
+
+table th {
+  text-align: left;
+  white-space: nowrap;
+  font-weight: 400;
+}
+
+table thead th {
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #444;
+  padding: 1rem 2rem;
+}
+
+table :not(:first-child) td,
+table :not(:first-child) th {
+  vertical-align: top;
+  border: 0;
+  border-top: 1px solid rgba(45, 45, 45, 0.8);
+  padding: 1rem 2rem;
+}
+
+table td[colspan] {
+  border: 0;
+}
+
+[scope='rowgroup'] {
+  // background: rgba(45, 45, 45, 0.8);
+}
+
+table :last-child {
+  margin-bottom: 0;
+}
