@@ -9,6 +9,10 @@
 		"email": "me@johanedlund.se",
 		"url": "https://www.johanedlund.se"
 	},
+	"engines": {
+		"node": "16.15.1",
+		"npm": "8.11.0"
+	},
 	"main": "main.js",
 	"scripts": {
 		"clean": "del-cli _site",
