@@ -7,13 +7,15 @@ layout: base.njk
 
 				<h1 id="{{ title | slug }}-title" class="article__title p-name title" itemprop="headline">{{ title }}</h1>
 
-				<div class="article__meta">
-						<p>
-								<time class="article__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">{{ page.date | readableDate('dd LLL yyyy') }}</time>
-								{% if tags %}
-								<span>&sdot;</span> <span class="article__tags p-category">{{ tags | join(', ') }}</span>
-								{% endif %}
-						</p>
+		<div class="post__meta">
+					<time class="post__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">Published: {{ page.date | readableDate('yyyy-LL-dd') }}</time>
+					{% if last_updated %}
+					<span> &sdot; </span>
+					<time class="post_updated dt-updated" datetime="{{ last_updated | dateToISO }}">Updated: {{ last_updated | readableDate('yyyy-LL-dd')}}</time>
+					{% endif %}
+					{% if tags %}
+					<span aria-label="in category">&sdot;</span> <span class="post__tags p-category">{{ tags | join(', ') }}</span>
+					{% endif %}
 				</div>
 
 		</header>
