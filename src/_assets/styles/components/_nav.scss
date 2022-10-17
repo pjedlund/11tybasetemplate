@@ -16,6 +16,50 @@
 	&__toggle {
 		@include button-reset;
 	}
+	
+	// Nav Item LI
+	&__item {
+			position: relative;
+	
+			// Underline
+			&::after {
+					content: '';
+					display: block;
+					height: 2px;
+					background-color: $color3medium;
+					position: absolute;
+					left: .75rem;
+					right: 1rem;
+					bottom: -3px;
+					transform: scaleX(0);
+					transform-origin: 0 50%;
+					transition: transform 0.3s cubic-bezier(0.86, 0, 0.07, 1);
+			}
+	
+			// Hover Underline
+			&:hover::after {
+					transform: scaleX(1);
+			}
+	
+			// Current Page Active Item
+			&--active {
+					&::after {
+						content: '';
+						display: block;
+						height: 2px;
+						background-color: $color3medium;
+						position: absolute;
+						left: .75rem;
+						right: 1rem;
+						bottom: -3px;
+						transform: none;
+					}
+					> a {
+							color: var(--color-text);
+					}
+			}
+	}
+	
 
 	@include mq-down(lg) {
 		&.is-open &__menu {
