@@ -4,6 +4,6 @@
 	"domain": "localhost",
 	"url": "https://11tybasetemplate.netlify.app",
 	"lang": "en",
-	"locale": "en_us",
+	"locale": "en-GB",
 	"repo": "https://github.com/pjedlund/11tybasetemplate"
 }
