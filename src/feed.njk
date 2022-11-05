@@ -14,7 +14,7 @@ eleventyExcludeFromCollections: true
 		{% if collections.allposts %}
 		<updated>{{ collections.allposts | rssLastUpdatedDate }}</updated>
 		{% endif %}
-		<id>{{ meta.url }}</id>
+		<id>{{ meta.url }}/</id>
 		{%- for post in collections.allposts | reverse -%}
 		{% set absolutePostUrl %}{{ post.url | url | absoluteUrl(meta.url) }}{% endset %}
 				<entry>

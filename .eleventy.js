@@ -1,6 +1,6 @@
 const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
-const pluginSyntaxHighlight = require("@11ty/eleventy-plugin-syntaxhighlight")
+const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const { minify } = require('terser')
 
 const markdownIt = require('markdown-it')
@@ -39,10 +39,14 @@ module.exports = function (eleventyConfig) {
   })
 
   // Plugins
-  eleventyConfig.addPlugin(pluginRss)
+  eleventyConfig.addPlugin(pluginRss, {
+    posthtmlRenderOptions: {
+      closingSingleTag: 'default' // opt-out of <img/>-style XHTML single tags
+    }
+  })
   eleventyConfig.addPlugin(pluginNavigation)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
-  
+
   // Shortcodes
   Object.keys(shortcodes).forEach((shortcodeName) => {
     eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
@@ -57,7 +61,6 @@ module.exports = function (eleventyConfig) {
   Object.keys(transforms).forEach((transformName) => {
     eleventyConfig.addTransform(transformName, transforms[transformName])
   })
-
 
   // Markdown
   let markdownItOptions = {
