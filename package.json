@@ -48,6 +48,7 @@
     "cross-env": "^7.0.3",
     "cssesc": "^3.0.0",
     "del-cli": "^5.0.0",
+    "eleventy-plugin-embed-everything": "^1.15.1",
     "fast-exif": "^2.0.1",
     "focus-trap": "^7.4.0",
     "focus-visible": "^5.2.0",
