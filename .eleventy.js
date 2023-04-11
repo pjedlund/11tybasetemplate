@@ -19,7 +19,7 @@ const IS_PRODUCTION = process.env.ELEVENTY_ENV === 'production'
 const CONTENT_GLOBS = {
   posts: 'src/posts/*/*.md',
   notes: 'src/notes/*.md',
-  media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm'
+  media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm|*.avif'
 }
 
 module.exports = function (eleventyConfig) {
@@ -53,7 +53,7 @@ module.exports = function (eleventyConfig) {
   Object.keys(shortcodes).forEach((shortcodeName) => {
     eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
   })
-
+    
   // Filters
   Object.keys(filters).forEach((filterName) => {
     eleventyConfig.addFilter(filterName, filters[filterName])
@@ -64,7 +64,7 @@ module.exports = function (eleventyConfig) {
     eleventyConfig.addTransform(transformName, transforms[transformName])
   })
 
-  // Markdown
+  // Markdown It and the myriad of plugins
   let markdownItOptions = {
     html: true,
     breaks: true,
@@ -75,8 +75,14 @@ module.exports = function (eleventyConfig) {
     .use(markdownItAttrs)
     .use(markdownItFootnote)
     .use(markdownItAnchor, {
+      //permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
       permalink: markdownItAnchor.permalink.headerLink({
-        safariReaderFix: true
+        safariReaderFix: true,
+        symbol: `
+          <span class="visually-hidden">Jump to heading</span>
+          <span aria-hidden="true">#</span>
+        `,
+        placement: 'before'
       })
     })
     .use(markdownItToCDoneRight)
