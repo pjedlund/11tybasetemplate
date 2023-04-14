@@ -36,7 +36,7 @@ module.exports = {
       let lowsrc = metadata.jpeg[0];
       let highsrc = metadata.jpeg[metadata.jpeg.length - 1];
       
-      console.log(metadata);
+      //console.log(metadata);
     
       //return imageAttributes.sizes;
       return `<figure class='extend'><picture>
