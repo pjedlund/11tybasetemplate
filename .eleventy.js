@@ -71,19 +71,28 @@ module.exports = function (eleventyConfig) {
     linkify: true,
     typographer: true
   }
+  const anchorSlugify = (s) =>
+  encodeURIComponent(
+      'h-' +
+          String(s)
+              .trim()
+              .toLowerCase()
+              .replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, '')
+              .replace(/\s+/g, '-')
+  )
   let markdownLib = markdownIt(markdownItOptions)
     .use(markdownItAttrs)
     .use(markdownItFootnote)
+
     .use(markdownItAnchor, {
       //permalink: markdownItAnchor.permalink.headerLink({ safariReaderFix: true })
-      permalink: markdownItAnchor.permalink.headerLink({
-        safariReaderFix: true,
-        symbol: `
-          <span class="visually-hidden">Jump to heading</span>
-          <span aria-hidden="true">#</span>
-        `,
-        placement: 'before'
-      })
+      permalink: true,
+      permalinkSymbol: '#',
+      permalinkClass: 'heading-anchor',
+      permalinkBefore: true,
+      permalinkAttrs: () => ({ 'aria-hidden': true }),
+      level: 2,
+      slugify: anchorSlugify
     })
     .use(markdownItToCDoneRight)
   //TODO:!! add [num] infront of footnotes
