@@ -16,6 +16,7 @@ module.exports = {
           throw new Error(`Missing \`alt\` for: ${src}`);
       }
       // Prepend the image src with the full directory `inputPath`:
+      let className = classname;
       let imageSrc = `${path.dirname(this.page.inputPath)}/${src}`;
       let metadata = await Image(imageSrc, {
         widths: [300, 1000],
