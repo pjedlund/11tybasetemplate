@@ -13,39 +13,33 @@ permalink: /
 		<p class="u-align-center">11ty basetemplate.<p>
 		
 		
-		<h2>All posts:</h2>
-		
-			<ul>
-			{%- for post in collections.all -%}
-				<li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
-			{%- endfor -%}
-			</ul>
-			<p>{{ absolutePageUrl }}</p>
-		
-		
 		{% if collections.featured.length %}
 		<h2>Featured:</h2>
 		<ul>
-		{%- for feature in collections.featured -%}
+		{%- for feature in collections.featured | reverse -%}
 			<li><a href="{{ feature.url }}">{{ feature.data.title }}</a></li>
 		{%- endfor -%}
 		</ul>
 		{% endif %}
 		
-		{% if collections.notes.length %}
+		<h2>All posts:</h2>
+		
+			<ul>
+			{%- for post in collections.all | reverse -%}
+				<li><a href="{{ post.url }}">{{ post.data.title }}</a></li>
+			{%- endfor -%}
+			</ul>
+		
+		
+		{% if collections.allnotes.length %}
 		<h2>Notes:</h2>
 		<ul>
-		{%- for note in collections.notes -%}
+		{%- for note in collections.allnotes  | reverse -%}
 			<li><a href="{{ note.url }}">{{ note.data.title }}</a></li>
 		{%- endfor -%}
 		</ul>
 		{% endif %}
-		
-		
-		
-		<p>Conatct info..., tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.</p>
-		<p>Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor. Donec ullamcorper nulla non metus auctor fringilla.</p>
-		
+	
 		
 	</div><!-- end page__content -->
 	

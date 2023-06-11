@@ -21,7 +21,16 @@ layout: base.njk
   </header>
 
     <div class="post__content e-content markdown" itemprop="articleBody">
-				{{ date }}
+    
+    <aside>
+      {# Table Of Contents #}
+      {% set tocMarkup = content | toc | safe %}
+      {% set hasToc = tocMarkup.length > 0 %}
+      {% if hasToc %}
+        {% include "toc.njk" %}
+      {% endif %}
+    </aside>
+    
         {{ content | safe }}
     </div>
     

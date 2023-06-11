@@ -2,6 +2,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginEmbedEverything = require('eleventy-plugin-embed-everything')
+const pluginEleventyTOC = require("eleventy-plugin-nesting-toc");
 const { minify } = require('terser')
 
 const markdownIt = require('markdown-it')
@@ -34,10 +35,23 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addCollection('allnotes', function (collection) {
     return collection.getFilteredByGlob(CONTENT_GLOBS.notes)
   })
-  // Collection: featured
-  eleventyConfig.addCollection('allfeatured', function (collection) {
-    return collection.getFilteredByTags('featured')
-  })
+
+  // Collection: Featured Post
+  eleventyConfig.addCollection("featured", function (collection) {
+    return collection
+      .getFilteredByGlob(CONTENT_GLOBS.posts)
+      .filter((item) => item.data.featured)
+      // .sort((a, b) => b.date - a.date);
+  });
+  
+  // Return all the tags used in a collection
+  eleventyConfig.addFilter("getAllTags", collection => {
+    let tagSet = new Set();
+    for(let item of collection) {
+      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+    }
+    return Array.from(tagSet);
+  });
 
   // Plugins
   eleventyConfig.addPlugin(pluginRss, {
@@ -48,6 +62,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginNavigation)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
   eleventyConfig.addPlugin(pluginEmbedEverything)
+  eleventyConfig.addPlugin(pluginEleventyTOC, {
+    wrapper: "div",
+    tags: ["h2", "h3", "h4"],
+    wrapperClass: "toc",
+  });
 
   // Shortcodes
   Object.keys(shortcodes).forEach((shortcodeName) => {
