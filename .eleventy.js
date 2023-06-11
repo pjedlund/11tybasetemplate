@@ -18,7 +18,7 @@ const IS_PRODUCTION = process.env.ELEVENTY_ENV === 'production'
 
 const CONTENT_GLOBS = {
   posts: 'src/posts/*/*.md',
-  notes: 'src/notes/*.md',
+  notes: 'src/notes/*/*.md',
   media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm|*.avif'
 }
 
@@ -114,7 +114,8 @@ module.exports = function (eleventyConfig) {
 
   // Pass-through for post-images
   eleventyConfig.addPassthroughCopy(
-    'src/posts/*/*.{jpg,jpeg,png,gif,mp4,webp,webm,avif}'
+    'src/posts/*/*.{jpg,jpeg,png,gif,mp4,webp,webm,avif}',
+    'src/notes/*/*.{jpg,jpeg,png,gif,mp4,webp,webm,avif}'
   )
 
   return {

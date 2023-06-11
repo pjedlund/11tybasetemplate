@@ -1,3 +1,4 @@
 {
-	"layout": "note.njk"
+	"layout": "note.njk",
+	"permalink": "notes/{{ page.fileSlug }}/index.html"
 }
