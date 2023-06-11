@@ -2,6 +2,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginEmbedEverything = require('eleventy-plugin-embed-everything')
+const pluginEleventyTOC = require("eleventy-plugin-nesting-toc");
 const { minify } = require('terser')
 
 const markdownIt = require('markdown-it')
@@ -61,6 +62,11 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginNavigation)
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
   eleventyConfig.addPlugin(pluginEmbedEverything)
+  eleventyConfig.addPlugin(pluginEleventyTOC, {
+    wrapper: "div",
+    tags: ["h2", "h3", "h4"],
+    wrapperClass: "toc",
+  });
 
   // Shortcodes
   Object.keys(shortcodes).forEach((shortcodeName) => {
