@@ -7,21 +7,35 @@ layout: base.njk
   <header class="article__header">
   
     <h1 id="{{ title | slug }}-title" class="post__title p-name title" itemprop="headline">{{ title }}</h1>
+    
     <div class="post__meta">
-      <time class="post__date dt-published" itemprop="datePublished" datetime="{{ page.date | dateToISO }}">Published: {{ page.date | readableDate('yyyy-LL-dd') }}</time>
+      {# Draft date #}
+      <time class="post__date dt-draft" datetime="{{ page.date | dateToISO }}">First draft: {{ page.date | readableDate('yyyy-LL-dd') }}</time>
+      {# Published date #}
+      {% if published %}
+        <span> &sdot; </span>
+        <time class="post__date dt-published" itemprop="datePublished" datetime="{{ published | dateToISO }}">Published: {{ published | readableDate('yyyy-LL-dd') }}</time>
+      {% endif %}
+      {# Last updated date #}
       {% if last_updated %}
       <span> &sdot; </span>
       <time class="post_updated dt-updated" datetime="{{ last_updated | dateToISO }}">Updated: {{ last_updated | readableDate('yyyy-LL-dd')}}</time>
       {% endif %}
+      
+      {# Tags #}
+      
       {% if tags %}
-      <span aria-label="in category">&sdot;</span> <span class="post__tags p-category">{{ tags | join(', ') }}</span>
+      <span class="post__tags p-category">{{ tags | join(', ') }}</span>
       {% endif %}
+     
     </div>
   
   </header>
-
+   
     <div class="post__content e-content markdown" itemprop="articleBody">
     
+    
+    {% if siteConfig.showTOC %}
     <aside>
       {# Table Of Contents #}
       {% set tocMarkup = content | toc | safe %}
@@ -30,8 +44,10 @@ layout: base.njk
         {% include "toc.njk" %}
       {% endif %}
     </aside>
+    {% endif %}
     
-        {{ content | safe }}
+      {{ content | safe }}
+      
     </div>
     
     <div class="post__footer">
