@@ -34,16 +34,16 @@ layout: base.njk
    
     <div class="post__content e-content markdown" itemprop="articleBody">
     
-    {% if siteConfig.showTableOfContents %}
-    <aside>
-      {# Table Of Contents #}
-      {% set tocMarkup = content | toc | safe %}
-      {% set hasToc = tocMarkup.length > 0 %}
-      {% if hasToc %}
-        {% include "toc.njk" %}
+      {% if siteConfig.showTableOfContents %}
+      <aside>
+        {# Table Of Contents #}
+        {% set tocMarkup = content | toc | safe %}
+        {% set hasToc = tocMarkup.length > 0 %}
+        {% if hasToc %}
+          {% include "toc.njk" %}
+        {% endif %}
+      </aside>
       {% endif %}
-    </aside>
-    {% endif %}
     
       {{ content | safe }}
       
@@ -57,10 +57,17 @@ layout: base.njk
             {# <img class="u-photo" src="{{ author.avatar | url | absoluteUrl(author.url) }}" /> #}
         </p>
       </div>
-        <p class="post__footer__info">
-            Published in [{{ tags | join(', ') }}] &sdot; {{ page.date | readableDate('dd LLL yyyy') }} <br/>
-            <a href="{{ meta.repo }}/tree/master/{{ page.inputPath }}" title="suggest a change to this post by submitting a PR">Edit this Post</a>
-        </p>
+      {% if draft %}
+          <p class="post__footer__info">
+              This post is still a draft.<br/>
+              <a href="{{ site.repo }}/tree/master/{{ page.inputPath }}" title="suggest a change to this post by submitting a PR">Suggest a change</a>
+          </p>
+      {% else %}
+          <p class="post__footer__info">
+              Published in [{{ tags | join(', ') }}] &sdot; {{ page.date | readableDate('dd LLL yyyy') }} <br/>
+              <a href="{{ site.repo }}/tree/master/{{ page.inputPath }}" title="suggest a change to this post by submitting a PR">Edit this Post</a>
+          </p>
+      {% endif %}
     </div>
 
 </article>

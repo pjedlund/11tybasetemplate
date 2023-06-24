@@ -2,7 +2,7 @@ const pluginRss = require('@11ty/eleventy-plugin-rss')
 const pluginNavigation = require('@11ty/eleventy-navigation')
 const pluginSyntaxHighlight = require('@11ty/eleventy-plugin-syntaxhighlight')
 const pluginEmbedEverything = require('eleventy-plugin-embed-everything')
-const pluginEleventyTOC = require("eleventy-plugin-nesting-toc");
+const pluginEleventyTOC = require('eleventy-plugin-nesting-toc')
 const { minify } = require('terser')
 
 const markdownIt = require('markdown-it')
@@ -18,7 +18,8 @@ const transforms = require('./utils/transforms.js')
 const IS_PRODUCTION = process.env.ELEVENTY_ENV === 'production'
 
 const CONTENT_GLOBS = {
-  posts: 'src/posts/*/*.md',
+  posts: 'src/posts/**/*.md',
+  drafts: 'src/drafts/**/*.md',
   notes: 'src/notes/*/*.md',
   media: '*.jpg|*.jpeg|*.png|*.gif|*.mp4|*.webp|*.webm|*.avif'
 }
@@ -37,21 +38,21 @@ module.exports = function (eleventyConfig) {
   })
 
   // Collection: Featured Post
-  eleventyConfig.addCollection("featured", function (collection) {
+  eleventyConfig.addCollection('featured', function (collection) {
     return collection
       .getFilteredByGlob(CONTENT_GLOBS.posts)
       .filter((item) => item.data.featured)
-      // .sort((a, b) => b.date - a.date);
-  });
-  
+    // .sort((a, b) => b.date - a.date);
+  })
+
   // Return all the tags used in a collection
-  eleventyConfig.addFilter("getAllTags", collection => {
-    let tagSet = new Set();
-    for(let item of collection) {
-      (item.data.tags || []).forEach(tag => tagSet.add(tag));
+  eleventyConfig.addFilter('getAllTags', (collection) => {
+    let tagSet = new Set()
+    for (let item of collection) {
+      ;(item.data.tags || []).forEach((tag) => tagSet.add(tag))
     }
-    return Array.from(tagSet);
-  });
+    return Array.from(tagSet)
+  })
 
   // Plugins
   eleventyConfig.addPlugin(pluginRss, {
@@ -63,16 +64,16 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPlugin(pluginSyntaxHighlight)
   eleventyConfig.addPlugin(pluginEmbedEverything)
   eleventyConfig.addPlugin(pluginEleventyTOC, {
-    wrapper: "div",
-    tags: ["h2", "h3", "h4"],
-    wrapperClass: "toc",
-  });
+    wrapper: 'div',
+    tags: ['h2', 'h3', 'h4'],
+    wrapperClass: 'toc'
+  })
 
   // Shortcodes
   Object.keys(shortcodes).forEach((shortcodeName) => {
     eleventyConfig.addShortcode(shortcodeName, shortcodes[shortcodeName])
   })
-    
+
   // Filters
   Object.keys(filters).forEach((filterName) => {
     eleventyConfig.addFilter(filterName, filters[filterName])
@@ -91,14 +92,14 @@ module.exports = function (eleventyConfig) {
     typographer: true
   }
   const anchorSlugify = (s) =>
-  encodeURIComponent(
+    encodeURIComponent(
       'h-' +
-          String(s)
-              .trim()
-              .toLowerCase()
-              .replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, '')
-              .replace(/\s+/g, '-')
-  )
+        String(s)
+          .trim()
+          .toLowerCase()
+          .replace(/[.,\/#!$%\^&\*;:{}=_`~()]/g, '')
+          .replace(/\s+/g, '-')
+    )
   let markdownLib = markdownIt(markdownItOptions)
     .use(markdownItAttrs)
     .use(markdownItFootnote)
