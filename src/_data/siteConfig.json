@@ -1,4 +1,4 @@
 {
-	"showTOC": false,
-	"weather": "Sunny!"
+  "showTableOfContents": true,
+  "weather": "Sunny!"
 }

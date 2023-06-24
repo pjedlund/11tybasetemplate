@@ -34,8 +34,7 @@ layout: base.njk
    
     <div class="post__content e-content markdown" itemprop="articleBody">
     
-    
-    {% if siteConfig.showTOC %}
+    {% if siteConfig.showTableOfContents %}
     <aside>
       {# Table Of Contents #}
       {% set tocMarkup = content | toc | safe %}
